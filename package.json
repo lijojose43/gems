@@ -1,0 +1,53 @@
+{
+  "name": "gems-academy-pwa",
+  "version": "1.0.0",
+  "description": "Student mentoring and communication management system for Gems Academy",
+  "main": "index.html",
+  "scripts": {
+    "start": "python3 server.py",
+    "dev": "python3 server.py 8000",
+    "serve": "python3 server.py",
+    "build": "echo 'No build process required - static files ready'",
+    "test": "echo 'No tests specified yet'",
+    "lint": "echo 'No linting configured yet'",
+    "validate": "echo 'Validating PWA manifest...' && python3 -c \"import json; json.load(open('manifest.json'))\" && echo '✅ Manifest valid'"
+  },
+  "keywords": [
+    "pwa",
+    "education",
+    "student-management",
+    "mentoring",
+    "communication",
+    "offline"
+  ],
+  "author": "Gems Academy",
+  "license": "PROPRIETARY",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/gems-academy/student-management"
+  },
+  "bugs": {
+    "url": "https://github.com/gems-academy/student-management/issues"
+  },
+  "homepage": "https://gems-academy.edu",
+  "engines": {
+    "python": ">=3.6"
+  },
+  "devDependencies": {},
+  "dependencies": {},
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not dead",
+    "not ie 11"
+  ],
+  "pwa": {
+    "name": "Gems Academy",
+    "short_name": "Gems",
+    "description": "Student mentoring management system",
+    "background_color": "#ffffff",
+    "theme_color": "#6366f1",
+    "display": "standalone",
+    "orientation": "portrait"
+  }
+}

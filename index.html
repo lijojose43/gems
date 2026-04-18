@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="description" content="Gems Academy - Student Mentoring Management System">
+    <meta name="theme-color" content="#6366f1">
+    <title>Gems Academy - Student Management</title>
+    
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="manifest.json">
+    
+    <!-- Icons -->
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/icons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/icons/favicon-16x16.png">
+    <link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png">
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/themes.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="css/pwa-styles.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <h1>💎 Gems Academy</h1>
+                </div>
+                <div class="header-actions">
+                    <button id="theme-toggle" class="btn-icon" aria-label="Toggle theme">
+                        <span class="icon">🌙</span>
+                    </button>
+                    <button id="menu-toggle" class="btn-icon" aria-label="Toggle menu">
+                        <span class="icon">☰</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Navigation -->
+    <nav id="main-nav" class="nav">
+        <div class="container">
+            <ul class="nav-list">
+                <li><a href="#dashboard" class="nav-link active" data-section="dashboard">📊 Dashboard</a></li>
+                <li><a href="#students" class="nav-link" data-section="students">👥 Students</a></li>
+                <li><a href="#communication" class="nav-link" data-section="communication">📞 Communication</a></li>
+                <li><a href="#import-export" class="nav-link" data-section="import-export">📁 Import/Export</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main">
+        <div class="container">
+            <!-- Dashboard Section -->
+            <section id="dashboard-section" class="section active">
+                <div class="section-header">
+                    <h2>Dashboard</h2>
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-number" id="total-students">0</div>
+                            <div class="stat-label">Total Students</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number" id="recent-calls">0</div>
+                            <div class="stat-label">Recent Calls</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number" id="pending-followups">0</div>
+                            <div class="stat-label">Pending Follow-ups</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="recent-activity">
+                    <h3>Recent Activity</h3>
+                    <div id="recent-activity-list" class="activity-list">
+                        <!-- Activity items will be populated here -->
+                    </div>
+                </div>
+            </section>
+
+            <!-- Students Section -->
+            <section id="students-section" class="section">
+                <div class="section-header">
+                    <h2>Students</h2>
+                    <div class="section-actions">
+                        <button id="add-student-btn" class="btn btn-primary">➕ Add Student</button>
+                        <div class="search-box">
+                            <input type="search" id="student-search" placeholder="Search students..." class="form-input">
+                        </div>
+                    </div>
+                </div>
+                <div id="students-list" class="students-grid">
+                    <!-- Student cards will be populated here -->
+                </div>
+            </section>
+
+            <!-- Communication Section -->
+            <section id="communication-section" class="section">
+                <div class="section-header">
+                    <h2>Communication Log</h2>
+                    <div class="section-actions">
+                        <button id="add-communication-btn" class="btn btn-primary">➕ Add Log</button>
+                        <select id="communication-filter" class="form-select">
+                            <option value="all">All Types</option>
+                            <option value="call">Calls</option>
+                            <option value="whatsapp">WhatsApp</option>
+                            <option value="meeting">Meetings</option>
+                        </select>
+                    </div>
+                </div>
+                <div id="communication-list" class="communication-timeline">
+                    <!-- Communication logs will be populated here -->
+                </div>
+            </section>
+
+            <!-- Import/Export Section -->
+            <section id="import-export-section" class="section">
+                <div class="section-header">
+                    <h2>Import/Export Data</h2>
+                </div>
+                <div class="import-export-grid">
+                    <div class="card">
+                        <h3>📥 Import Data</h3>
+                        <p>Import student data from CSV file</p>
+                        <div class="file-upload-area" id="csv-upload-area">
+                            <input type="file" id="csv-file-input" accept=".csv" style="display: none;">
+                            <label for="csv-file-input" class="file-upload-label">
+                                <span class="upload-icon">📁</span>
+                                <span class="upload-text">Click to browse or drag CSV file here</span>
+                            </label>
+                        </div>
+                        <button id="import-btn" class="btn btn-secondary" style="display: none;">Import Data</button>
+                    </div>
+                    <div class="card">
+                        <h3>📤 Export Data</h3>
+                        <p>Export your data to CSV files</p>
+                        <div class="export-options">
+                            <button id="export-students-btn" class="btn btn-secondary">📋 Export Students</button>
+                            <button id="export-communication-btn" class="btn btn-secondary">📞 Export Communication</button>
+                            <button id="export-all-btn" class="btn btn-primary">📦 Export All Data</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Mobile Bottom Navigation -->
+    <nav class="mobile-nav">
+        <a href="#dashboard" class="mobile-nav-link active" data-section="dashboard">
+            <span class="nav-icon">📊</span>
+            <span class="nav-label">Dashboard</span>
+        </a>
+        <a href="#students" class="mobile-nav-link" data-section="students">
+            <span class="nav-icon">👥</span>
+            <span class="nav-label">Students</span>
+        </a>
+        <a href="#communication" class="mobile-nav-link" data-section="communication">
+            <span class="nav-icon">📞</span>
+            <span class="nav-label">Communication</span>
+        </a>
+        <a href="#import-export" class="mobile-nav-link" data-section="import-export">
+            <span class="nav-icon">📁</span>
+            <span class="nav-label">Data</span>
+        </a>
+    </nav>
+
+    <!-- Modals -->
+    <div id="modal-overlay" class="modal-overlay">
+        <!-- Student Form Modal -->
+        <div id="student-modal" class="modal">
+            <div class="modal-header">
+                <h3 id="student-modal-title">Add New Student</h3>
+                <button class="modal-close" data-modal="student-modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="student-form" class="form">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="student-name" class="form-label">Name *</label>
+                            <input type="text" id="student-name" name="name" class="form-input" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="student-class" class="form-label">Class *</label>
+                            <input type="text" id="student-class" name="class" class="form-input" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="student-school" class="form-label">School *</label>
+                            <input type="text" id="student-school" name="school" class="form-input" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="student-place" class="form-label">Place *</label>
+                            <input type="text" id="student-place" name="place" class="form-input" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="student-joining-year" class="form-label">Gems Joining Year *</label>
+                            <input type="number" id="student-joining-year" name="gemsJoiningYear" class="form-input" min="2000" max="2030" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="student-mobile1" class="form-label">Mobile 1 *</label>
+                            <input type="tel" id="student-mobile1" name="mobile1" class="form-input" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="student-mobile2" class="form-label">Mobile 2</label>
+                            <input type="tel" id="student-mobile2" name="mobile2" class="form-input">
+                        </div>
+                        <div class="form-group">
+                            <label for="student-province" class="form-label">Province</label>
+                            <input type="text" id="student-province" name="province" class="form-input">
+                        </div>
+                        <div class="form-group">
+                            <label for="student-father-name" class="form-label">Father's Name</label>
+                            <input type="text" id="student-father-name" name="fathersName" class="form-input">
+                        </div>
+                        <div class="form-group">
+                            <label for="student-father-occupation" class="form-label">Father's Occupation</label>
+                            <input type="text" id="student-father-occupation" name="fathersOccupation" class="form-input">
+                        </div>
+                        <div class="form-group">
+                            <label for="student-mother-name" class="form-label">Mother's Name</label>
+                            <input type="text" id="student-mother-name" name="mothersName" class="form-input">
+                        </div>
+                        <div class="form-group">
+                            <label for="student-mother-occupation" class="form-label">Mother's Occupation</label>
+                            <input type="text" id="student-mother-occupation" name="mothersOccupation" class="form-input">
+                        </div>
+                        <div class="form-group">
+                            <label for="student-siblings" class="form-label">Siblings</label>
+                            <textarea id="student-siblings" name="siblings" class="form-textarea" rows="2"></textarea>
+                        </div>
+                        <div class="form-group full-width">
+                            <label for="student-remarks" class="form-label">Remarks</label>
+                            <textarea id="student-remarks" name="remarks" class="form-textarea" rows="3"></textarea>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-modal="student-modal">Cancel</button>
+                <button type="submit" form="student-form" class="btn btn-primary">Save Student</button>
+            </div>
+        </div>
+
+        <!-- Communication Log Modal -->
+        <div id="communication-modal" class="modal">
+            <div class="modal-header">
+                <h3>Add Communication Log</h3>
+                <button class="modal-close" data-modal="communication-modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="communication-form" class="form">
+                    <div class="form-group">
+                        <label for="comm-student" class="form-label">Student *</label>
+                        <select id="comm-student" name="studentId" class="form-select" required>
+                            <option value="">Select a student</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="comm-type" class="form-label">Type *</label>
+                        <select id="comm-type" name="type" class="form-select" required>
+                            <option value="">Select type</option>
+                            <option value="call">Phone Call</option>
+                            <option value="whatsapp">WhatsApp</option>
+                            <option value="meeting">Meeting</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="comm-date" class="form-label">Date *</label>
+                        <input type="date" id="comm-date" name="date" class="form-input" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="comm-time" class="form-label">Time *</label>
+                        <input type="time" id="comm-time" name="time" class="form-input" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="comm-duration" class="form-label">Duration</label>
+                        <input type="text" id="comm-duration" name="duration" class="form-input" placeholder="e.g., 15 minutes">
+                    </div>
+                    <div class="form-group">
+                        <label for="comm-notes" class="form-label">Notes *</label>
+                        <textarea id="comm-notes" name="notes" class="form-textarea" rows="4" required></textarea>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-modal="communication-modal">Cancel</button>
+                <button type="submit" form="communication-form" class="btn btn-primary">Save Log</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Loading Overlay -->
+    <div id="loading-overlay" class="loading-overlay">
+        <div class="loading-spinner"></div>
+        <div class="loading-text">Loading...</div>
+    </div>
+
+    <!-- Toast Notifications -->
+    <div id="toast-container" class="toast-container"></div>
+
+    <!-- Scripts -->
+    <script src="js/storage.js"></script>
+    <script src="js/csv.js"></script>
+    <script src="js/ui.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/pwa.js"></script>
+</body>
+</html>
