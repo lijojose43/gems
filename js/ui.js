@@ -409,7 +409,14 @@ class UIManager {
     Object.keys(data).forEach((key) => {
       const field = form.querySelector(`[name="${key}"]`);
       if (field) {
-        field.value = data[key] || "";
+        // Handle remarks array specially
+        if (key === "remarks" && Array.isArray(data[key])) {
+          // Get the most recent remark text
+          const latestRemark = data[key][data[key].length - 1];
+          field.value = latestRemark ? latestRemark.remark : "";
+        } else {
+          field.value = data[key] || "";
+        }
       }
     });
   }
