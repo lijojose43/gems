@@ -221,6 +221,15 @@ class GemsApp {
     this.openStudentModal(studentId);
   }
 
+  viewStudentDetails(studentId) {
+    const student = storage.getStudent(studentId);
+    if (!student) return;
+
+    this.currentViewingId = studentId;
+    this.renderStudentDetails(student);
+    ui.openModal("student-details-modal");
+  }
+
   deleteStudent(studentId) {
     const student = storage.getStudent(studentId);
     if (!student) return;
@@ -430,21 +439,42 @@ class GemsApp {
   exportAllData() {
     try {
       const data = storage.exportData();
-      const jsonContent = JSON.stringify(data, null, 2);
-      const filename = csvManager.generateFilename("gems_backup", "json");
 
-      const blob = new Blob([jsonContent], { type: "application/json" });
-      const url = URL.createObjectURL(blob);
-      const link = document.createElement("a");
-      link.href = url;
-      link.download = filename;
-      link.click();
-      URL.revokeObjectURL(url);
+      // Create separate CSV files for students and communication
+      const studentsCSV = csvManager.exportStudents(data.students || []);
+      const communicationCSV = csvManager.exportCommunication(
+        data.communication || [],
+        data.students || [],
+      );
 
-      ui.showToast("All data exported successfully", "success");
+      // Generate filename for CSV
+      const filename = csvManager.generateFilename("gems_backup", "csv");
+
+      // Combine both CSVs into one file with proper headers
+      const combinedCSV = this.combineExportCSVs(studentsCSV, communicationCSV);
+
+      csvManager.downloadCSV(combinedCSV, filename);
+      ui.showToast("All data exported successfully as CSV", "success");
     } catch (error) {
       ui.showToast("Error exporting data", "error");
     }
+  }
+
+  combineExportCSVs(studentsCSV, communicationCSV) {
+    const sections = [];
+
+    if (studentsCSV) {
+      sections.push("STUDENTS");
+      sections.push(studentsCSV);
+    }
+
+    if (communicationCSV) {
+      sections.push("");
+      sections.push("COMMUNICATION LOGS");
+      sections.push(communicationCSV);
+    }
+
+    return sections.join("\n");
   }
 
   // Activity Logging
@@ -534,6 +564,168 @@ class GemsApp {
     }
 
     deferredPrompt = null;
+  }
+
+  renderStudentDetails(student) {
+    const container = document.getElementById("student-details-content");
+
+    const remarksHtml =
+      student.remarks && student.remarks.length > 0
+        ? student.remarks
+            .map(
+              (remark) => `
+            <div class="remark-item">
+                <div class="remark-date">${ui.formatDate(remark.date)}</div>
+                <div class="remark-text">${ui.escapeHtml(remark.remark)}</div>
+            </div>
+        `,
+            )
+            .join("")
+        : '<p class="text-muted">No remarks recorded</p>';
+
+    const communicationLogs = storage
+      .getCommunication()
+      .filter((log) => log.studentId === student.id);
+    const communicationHtml =
+      communicationLogs.length > 0
+        ? communicationLogs
+            .map((log) => {
+              const typeIcon =
+                {
+                  call: '<svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>',
+                  whatsapp:
+                    '<svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>',
+                  meeting:
+                    '<svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>',
+                }[log.type] ||
+                '<svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg>';
+
+              return `
+                <div class="communication-log-item">
+                    <div class="log-header">
+                        <span class="log-type">${typeIcon} ${log.type.charAt(0).toUpperCase() + log.type.slice(1)}</span>
+                        <span class="log-date">${ui.formatDate(log.date)} at ${log.time}</span>
+                    </div>
+                    ${log.duration ? `<div class="log-duration"><strong>Duration:</strong> ${ui.escapeHtml(log.duration)}</div>` : ""}
+                    <div class="log-notes">${ui.escapeHtml(log.notes)}</div>
+                </div>
+            `;
+            })
+            .join("")
+        : '<p class="text-muted">No communication logs recorded</p>';
+
+    container.innerHTML = `
+        <div class="student-details">
+            <div class="student-details-header">
+                <h2>${ui.escapeHtml(student.name)}</h2>
+                <div class="student-details-actions">
+                    <button class="btn btn-primary" onclick="app.callStudent('${student.mobile1}')">
+                        <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+                        </svg>
+                        Call
+                    </button>
+                    <button class="btn btn-secondary" onclick="app.whatsappStudent('${student.mobile1}')">
+                        <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+                        </svg>
+                        WhatsApp
+                    </button>
+                </div>
+            </div>
+
+            <div class="student-details-grid">
+                <div class="details-section">
+                    <h3>Basic Information</h3>
+                    <div class="details-grid">
+                        <div class="detail-item">
+                            <label>Class:</label>
+                            <span>${ui.escapeHtml(student.class)}</span>
+                        </div>
+                        <div class="detail-item">
+                            <label>School:</label>
+                            <span>${ui.escapeHtml(student.school)}</span>
+                        </div>
+                        <div class="detail-item">
+                            <label>Place:</label>
+                            <span>${ui.escapeHtml(student.place)}</span>
+                        </div>
+                        <div class="detail-item">
+                            <label>Province:</label>
+                            <span>${ui.escapeHtml(student.province || "Not specified")}</span>
+                        </div>
+                        <div class="detail-item">
+                            <label>Gems Joining Year:</label>
+                            <span>${ui.escapeHtml(student.gemsJoiningYear)}</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="details-section">
+                    <h3>Contact Information</h3>
+                    <div class="details-grid">
+                        <div class="detail-item">
+                            <label>Mobile 1:</label>
+                            <span><a href="tel:${student.mobile1}">${ui.escapeHtml(student.mobile1)}</a></span>
+                        </div>
+                        <div class="detail-item">
+                            <label>Mobile 2:</label>
+                            <span>${student.mobile2 ? `<a href="tel:${student.mobile2}">${ui.escapeHtml(student.mobile2)}</a>` : "Not provided"}</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="details-section">
+                    <h3>Family Information</h3>
+                    <div class="details-grid">
+                        <div class="detail-item">
+                            <label>Father's Name:</label>
+                            <span>${ui.escapeHtml(student.fathersName || "Not provided")}</span>
+                        </div>
+                        <div class="detail-item">
+                            <label>Father's Occupation:</label>
+                            <span>${ui.escapeHtml(student.fathersOccupation || "Not provided")}</span>
+                        </div>
+                        <div class="detail-item">
+                            <label>Mother's Name:</label>
+                            <span>${ui.escapeHtml(student.mothersName || "Not provided")}</span>
+                        </div>
+                        <div class="detail-item">
+                            <label>Mother's Occupation:</label>
+                            <span>${ui.escapeHtml(student.mothersOccupation || "Not provided")}</span>
+                        </div>
+                        <div class="detail-item full-width">
+                            <label>Siblings:</label>
+                            <span>${ui.escapeHtml(student.siblings || "No siblings")}</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="details-section">
+                    <h3>Remarks History</h3>
+                    <div class="remarks-list">
+                        ${remarksHtml}
+                    </div>
+                </div>
+
+                <div class="details-section">
+                    <h3>Communication Logs (${communicationLogs.length})</h3>
+                    <div class="communication-logs">
+                        ${communicationHtml}
+                    </div>
+                </div>
+            </div>
+        </div>
+    `;
+
+    // Setup edit button
+    const editBtn = document.getElementById("edit-from-details-btn");
+    if (editBtn) {
+      editBtn.onclick = () => {
+        ui.closeModal("student-details-modal");
+        this.editStudent(student.id);
+      };
+    }
   }
 
   // Search and Filter

@@ -72,8 +72,20 @@
     align-items: stretch;
   }
 
+  .student-card-footer {
+    padding-top: 0.75rem;
+  }
+
   .student-actions {
     justify-content: center;
+    gap: 0.75rem;
+  }
+
+  .student-actions .btn-icon {
+    min-width: 2.75rem;
+    min-height: 2.75rem;
+    font-size: 1.25rem;
+    padding: 0.875rem;
   }
 
   .communication-timeline {
@@ -129,6 +141,26 @@
     max-height: calc(90vh - 7rem);
   }
 
+  .student-details-header {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 1rem;
+  }
+
+  .student-details-actions {
+    justify-content: center;
+  }
+
+  .details-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .log-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.25rem;
+  }
+
   .modal-footer {
     padding: 0.75rem 1rem 1rem;
     flex-direction: row;
@@ -154,7 +186,7 @@
   }
 
   .main {
-    padding-bottom: 4.5rem; /* Space for mobile nav with smaller add button */
+    padding-bottom: 4rem; /* Space for reduced mobile nav height */
   }
 
   .toast-container {
@@ -208,7 +240,7 @@
   }
 
   .main {
-    padding-bottom: 5rem;
+    padding-bottom: 4.5rem;
   }
 }
 
