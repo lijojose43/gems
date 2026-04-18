@@ -76,22 +76,6 @@
     padding-top: 0.75rem;
   }
 
-  .info-item {
-    padding: 0.75rem;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 0.5rem;
-  }
-
-  .info-item strong {
-    min-width: auto;
-  }
-
-  .info-item:not(:last-child)::after {
-    left: 0.75rem;
-    right: 0.75rem;
-  }
-
   .student-actions {
     justify-content: center;
     gap: 0.75rem;
