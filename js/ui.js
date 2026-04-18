@@ -66,16 +66,6 @@ class UIManager {
         this.showSection(section);
       });
     });
-
-    // Menu toggle for mobile
-    const menuToggle = document.getElementById("menu-toggle");
-    const mainNav = document.getElementById("main-nav");
-
-    if (menuToggle) {
-      menuToggle.addEventListener("click", () => {
-        mainNav.classList.toggle("active");
-      });
-    }
   }
 
   showSection(sectionName) {
@@ -98,9 +88,6 @@ class UIManager {
         link.classList.add("active");
       }
     });
-
-    // Close mobile menu if open
-    document.getElementById("main-nav").classList.remove("active");
 
     // Update page title
     this.updatePageTitle(sectionName);
