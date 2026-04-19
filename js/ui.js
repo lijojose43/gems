@@ -167,23 +167,33 @@ class UIManager {
     let startY = 0;
     let currentY = 0;
     let isDragging = false;
+    let initialScrollTop = 0;
 
     const handleStart = (e) => {
       startY = e.type.includes("mouse") ? e.clientY : e.touches[0].clientY;
-      isDragging = true;
-      modal.classList.add("dragging");
-      modal.style.transition = "none";
+      initialScrollTop = modal.scrollTop;
+
+      // Only start dragging if we're at the top of the modal content
+      if (initialScrollTop <= 5) {
+        isDragging = true;
+        modal.classList.add("dragging");
+        modal.style.transition = "none";
+      }
     };
 
     const handleMove = (e) => {
       if (!isDragging) return;
 
-      e.preventDefault();
       currentY = e.type.includes("mouse") ? e.clientY : e.touches[0].clientY;
       const deltaY = currentY - startY;
 
+      // Only prevent default and handle drag when moving downward
       if (deltaY > 0) {
+        e.preventDefault();
         modal.style.transform = `translateY(${deltaY}px)`;
+      } else {
+        // Allow upward scrolling of content
+        return;
       }
     };
 
@@ -207,6 +217,7 @@ class UIManager {
 
       startY = 0;
       currentY = 0;
+      initialScrollTop = 0;
     };
 
     // Add event listeners for touch and mouse
