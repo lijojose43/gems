@@ -13,7 +13,6 @@ class UIManager {
     this.setupToasts();
     this.setupSearch();
     this.setupFileUpload();
-    this.setupGoogleFormLink();
   }
 
   // Theme Management
@@ -24,13 +23,6 @@ class UIManager {
     document.getElementById("theme-toggle").addEventListener("click", () => {
       this.toggleTheme();
     });
-
-    // Mobile settings menu
-    document
-      .getElementById("mobile-settings-btn")
-      .addEventListener("click", () => {
-        this.openMobileSettings();
-      });
   }
 
   setTheme(theme) {
@@ -66,16 +58,6 @@ class UIManager {
     this.setTheme(themes[nextIndex]);
   }
 
-  openMobileSettings() {
-    const menu = document.getElementById("mobile-settings-menu");
-    menu.style.display = menu.style.display === "block" ? "none" : "block";
-  }
-
-  closeMobileSettings() {
-    const menu = document.getElementById("mobile-settings-menu");
-    menu.style.display = "none";
-  }
-
   // Navigation
   setupNavigation() {
     // Desktop navigation
@@ -86,9 +68,8 @@ class UIManager {
         this.showSection(section);
       });
     });
-  }
 
-  setupMobileNav() {
+    // Mobile navigation
     document.querySelectorAll(".mobile-nav-link").forEach((link) => {
       link.addEventListener("click", (e) => {
         e.preventDefault();
@@ -96,34 +77,6 @@ class UIManager {
         this.showSection(section);
       });
     });
-
-    // Mobile settings menu
-    document.querySelectorAll(".settings-option").forEach((option) => {
-      option.addEventListener("click", (e) => {
-        e.preventDefault();
-        const theme = option.dataset.theme;
-        this.setTheme(theme);
-        this.closeMobileSettings();
-      });
-    });
-
-    // Close mobile settings
-    document
-      .getElementById("close-mobile-settings")
-      .addEventListener("click", () => {
-        this.closeMobileSettings();
-      });
-
-    // Back to main settings
-    document
-      .getElementById("back-to-main-settings")
-      .addEventListener("click", () => {
-        this.closeMobileSettings();
-        // Navigate to main settings page
-        setTimeout(() => {
-          window.location.href = "#settings";
-        }, 100);
-      });
   }
 
   showSection(sectionName) {
