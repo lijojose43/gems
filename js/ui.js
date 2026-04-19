@@ -65,7 +65,11 @@ class UIManager {
       link.addEventListener("click", (e) => {
         e.preventDefault();
         const section = link.dataset.section;
-        this.showSection(section);
+        if (window.app && window.app.navigateToSection) {
+          window.app.navigateToSection(section);
+        } else {
+          this.showSection(section);
+        }
       });
     });
 
@@ -74,7 +78,11 @@ class UIManager {
       link.addEventListener("click", (e) => {
         e.preventDefault();
         const section = link.dataset.section;
-        this.showSection(section);
+        if (window.app && window.app.navigateToSection) {
+          window.app.navigateToSection(section);
+        } else {
+          this.showSection(section);
+        }
       });
     });
   }

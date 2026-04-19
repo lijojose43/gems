@@ -23,6 +23,8 @@ class StorageManager {
         theme: "light",
         autoBackup: true,
         lastSync: null,
+        googleFormLink: "",
+        googleMeetLink: "",
       });
     }
   }
@@ -172,6 +174,24 @@ class StorageManager {
   updateSetting(key, value) {
     const settings = this.getSettings();
     settings[key] = value;
+    return this.setSettings(settings);
+  }
+
+  // Google links specific methods
+  getGoogleFormLink() {
+    const settings = this.getSettings();
+    return settings.googleFormLink || "";
+  }
+
+  getGoogleMeetLink() {
+    const settings = this.getSettings();
+    return settings.googleMeetLink || "";
+  }
+
+  updateGoogleLinks(formLink, meetLink) {
+    const settings = this.getSettings();
+    settings.googleFormLink = formLink || "";
+    settings.googleMeetLink = meetLink || "";
     return this.setSettings(settings);
   }
 

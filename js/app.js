@@ -2,6 +2,7 @@
 class GemsApp {
   constructor() {
     this.currentEditId = null;
+    this.navigationHistory = [];
     this.init();
   }
 
@@ -11,6 +12,9 @@ class GemsApp {
     this.updateDashboard();
     this.renderStudents();
     this.renderCommunication();
+
+    // Load settings
+    this.loadSettings();
 
     // Setup auto-backup
     this.setupAutoBackup();
@@ -78,6 +82,32 @@ class GemsApp {
       .getElementById("communication-filter")
       .addEventListener("change", (e) => {
         this.filterCommunication(e.target.value);
+      });
+
+    // Settings toggle button
+    document.getElementById("settings-toggle").addEventListener("click", () => {
+      this.navigateToSection("settings");
+    });
+
+    // Settings form
+    document.getElementById("settings-form").addEventListener("submit", (e) => {
+      e.preventDefault();
+      this.handleSettingsSubmit();
+    });
+
+    // Reset settings button
+    document
+      .getElementById("reset-settings-btn")
+      .addEventListener("click", () => {
+        this.resetSettings();
+      });
+
+    // Settings go back link
+    document
+      .getElementById("settings-go-back")
+      .addEventListener("click", (e) => {
+        e.preventDefault();
+        this.goBack();
       });
   }
 
@@ -748,6 +778,94 @@ class GemsApp {
         }
       },
     );
+  }
+
+  // Settings Methods
+  loadSettings() {
+    const formLink = storage.getGoogleFormLink();
+    const meetLink = storage.getGoogleMeetLink();
+
+    document.getElementById("google-form-link").value = formLink;
+    document.getElementById("google-meet-link").value = meetLink;
+  }
+
+  handleSettingsSubmit() {
+    const formLink = document.getElementById("google-form-link").value.trim();
+    const meetLink = document.getElementById("google-meet-link").value.trim();
+
+    // Basic URL validation
+    if (formLink && !this.isValidUrl(formLink)) {
+      this.showSettingsMessage("Please enter a valid Google Form URL", "error");
+      return;
+    }
+
+    if (meetLink && !this.isValidUrl(meetLink)) {
+      this.showSettingsMessage("Please enter a valid Google Meet URL", "error");
+      return;
+    }
+
+    if (storage.updateGoogleLinks(formLink, meetLink)) {
+      this.showSettingsMessage("Settings saved successfully!", "success");
+    } else {
+      this.showSettingsMessage("Error saving settings", "error");
+    }
+  }
+
+  resetSettings() {
+    ui.confirm(
+      "Are you sure you want to reset the Google links to default?",
+      () => {
+        if (storage.updateGoogleLinks("", "")) {
+          this.loadSettings();
+          this.showSettingsMessage("Settings reset to default", "success");
+        } else {
+          this.showSettingsMessage("Error resetting settings", "error");
+        }
+      },
+    );
+  }
+
+  showSettingsMessage(message, type) {
+    const messageEl = document.getElementById("settings-message");
+    messageEl.textContent = message;
+    messageEl.className = `settings-message ${type}`;
+    messageEl.style.display = "block";
+
+    // Auto-hide after 3 seconds
+    setTimeout(() => {
+      messageEl.style.display = "none";
+    }, 3000);
+  }
+
+  isValidUrl(string) {
+    try {
+      const url = new URL(string);
+      return url.protocol === "http:" || url.protocol === "https:";
+    } catch (_) {
+      return false;
+    }
+  }
+
+  // Navigation Methods
+  navigateToSection(sectionName) {
+    // Add current section to history before navigating
+    const currentSection = document.querySelector(".section.active");
+    if (currentSection && currentSection.id !== `${sectionName}-section`) {
+      this.navigationHistory.push(currentSection.id.replace("-section", ""));
+    }
+
+    // Navigate to the new section
+    ui.showSection(sectionName);
+  }
+
+  goBack() {
+    if (this.navigationHistory.length > 0) {
+      const previousSection = this.navigationHistory.pop();
+      ui.showSection(previousSection);
+    } else {
+      // Default to dashboard if no history
+      ui.showSection("dashboard");
+    }
   }
 
   // Utility Methods

@@ -39,6 +39,12 @@
                             <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
                         </svg>
                     </button>
+                    <button id="settings-toggle" class="btn-icon" aria-label="Settings">
+                        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"></path>
+                            <circle cx="12" cy="12" r="3"></circle>
+                        </svg>
+                    </button>
                 </div>
             </div>
         </div>
@@ -77,6 +83,13 @@
                     <polyline points="13 2 13 9 20 9"></polyline>
                 </svg>
                 Import/Export
+            </a></li>
+                <li><a href="#settings" class="nav-link" data-section="settings">
+                <svg class="nav-icon-inline" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="3"></circle>
+                    <path d="M12 1v6m0 6v6m4.22-13.22l4.24 4.24M1.54 1.54l4.24 4.24M20.46 20.46l-4.24-4.24M1.54 20.46l4.24-4.24"></path>
+                </svg>
+                Settings
             </a></li>
             </ul>
         </div>
@@ -211,6 +224,46 @@
                         Export All Data
                     </button>
                         </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Settings Section -->
+            <section id="settings-section" class="section">
+                <div class="section-header">
+                    <div class="section-header-left">
+                        <a href="#" id="settings-go-back" class="go-back-link">
+                            <svg class="go-back-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M19 12H5M12 19l-7-7 7-7"></path>
+                            </svg>
+                            Go Back
+                        </a>
+                        <h2>Settings</h2>
+                    </div>
+                </div>
+                <div class="settings-content">
+                    <div class="card">
+                        <h3>
+                            External Links Configuration
+                        </h3>
+                        <p>Configure links for Google Forms and Google Meet integration</p>
+                        <form id="settings-form" class="form">
+                            <div class="form-group">
+                                <label for="google-form-link" class="form-label">Google Form Link</label>
+                                <input type="url" id="google-form-link" name="googleFormLink" class="form-input" placeholder="https://docs.google.com/forms/...">
+                                <small class="form-help">Enter the URL for your Google Form</small>
+                            </div>
+                            <div class="form-group">
+                                <label for="google-meet-link" class="form-label">Google Meet Link</label>
+                                <input type="url" id="google-meet-link" name="googleMeetLink" class="form-input" placeholder="https://meet.google.com/...">
+                                <small class="form-help">Enter the URL for your Google Meet room</small>
+                            </div>
+                            <div class="form-actions">
+                                <button type="submit" class="btn btn-primary">Save Settings</button>
+                                <button type="button" id="reset-settings-btn" class="btn btn-secondary">Reset to Default</button>
+                            </div>
+                        </form>
+                        <div id="settings-message" class="settings-message" style="display: none;"></div>
                     </div>
                 </div>
             </section>
