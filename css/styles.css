@@ -3,7 +3,6 @@
 /* CSS Reset and Base Styles */
 * {
   margin: 0;
-  padding: 0;
   box-sizing: border-box;
 }
 
@@ -220,6 +219,8 @@ body {
   background-color: transparent;
   border: none;
   color: var(--text-secondary);
+  width: 35px;
+  height: 35px;
 }
 
 .btn-icon:hover {
@@ -359,9 +360,9 @@ body {
   border: 1px solid var(--border-color);
   border-radius: var(--radius-lg);
   padding: 1.5rem;
-  box-shadow: var(--shadow-sm);
-  transition: all 0.2s ease;
+  transition: all 0.3s ease;
   position: relative;
+  cursor: pointer;
 }
 
 .student-card:hover {
@@ -374,6 +375,22 @@ body {
   justify-content: space-between;
   align-items: flex-start;
   margin-bottom: 1rem;
+}
+
+.student-card-actions {
+  display: flex;
+  gap: 0.5rem;
+  opacity: 1;
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  width: 80px;
+}
+
+.student-card-actions .btn-icon {
+  width: 36px;
+  height: 36px;
+  font-size: 1.1rem;
 }
 
 .student-name {
