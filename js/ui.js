@@ -2,7 +2,7 @@
 class UIManager {
   constructor() {
     this.currentSection = "dashboard";
-    this.currentTheme = "system";
+    this.currentTheme = "light";
     this.init();
   }
 
@@ -17,7 +17,7 @@ class UIManager {
 
   // Theme Management
   setupTheme() {
-    const savedTheme = storage.getSettings().theme || "system";
+    const savedTheme = storage.getSettings().theme || "light";
     this.setTheme(savedTheme);
 
     document.getElementById("theme-toggle").addEventListener("click", () => {
@@ -52,7 +52,7 @@ class UIManager {
   }
 
   toggleTheme() {
-    const themes = ["light", "dark", "system"];
+    const themes = ["light", "dark"];
     const currentIndex = themes.indexOf(this.currentTheme);
     const nextIndex = (currentIndex + 1) % themes.length;
     this.setTheme(themes[nextIndex]);

@@ -5,12 +5,14 @@ A Progressive Web Application for managing student mentoring, communication logs
 ## Features
 
 ### 📱 Mobile-First Design
+
 - Responsive design that works on all devices
 - Touch-friendly interface optimized for mobile phones
 - Installable as a native app on smartphones
 - Offline functionality with data synchronization
 
 ### 👥 Student Management
+
 - Complete student profiles with all required information
 - Quick search and filtering capabilities
 - Easy-to-use forms for adding and editing students
@@ -23,22 +25,24 @@ A Progressive Web Application for managing student mentoring, communication logs
   - Remarks with dates
 
 ### 📞 Communication Features
+
 - Call logging with duration and notes
 - WhatsApp integration for direct messaging
 - Communication history tracking
 - Follow-up reminders
 - Timeline view of all interactions
 
-### 💾 Data Management
+### Data Management
+
 - Local storage for offline access
 - CSV import for bulk student data
 - CSV export for backup and reporting
 - Auto-backup functionality
 - Data validation and error handling
 
-### 🎨 User Experience
+### User Experience
+
 - Dark and light theme support
-- System theme detection
 - Smooth animations and transitions
 - Loading states and progress indicators
 - Toast notifications for user feedback
@@ -46,11 +50,13 @@ A Progressive Web Application for managing student mentoring, communication logs
 ## Installation
 
 ### As Web App
+
 1. Open the application in your browser
 2. Click the install prompt (if available)
 3. Add to home screen for easy access
 
 ### As PWA
+
 1. Visit the application URL
 2. Look for the install icon in your browser
 3. Follow the installation prompts
@@ -59,13 +65,15 @@ A Progressive Web Application for managing student mentoring, communication logs
 ## Usage
 
 ### Adding Students
+
 1. Navigate to the "Students" section
 2. Click "Add Student" button
-3. Fill in all required fields (marked with *)
+3. Fill in all required fields (marked with \*)
 4. Add optional information as needed
 5. Save to create the student profile
 
 ### Communication Logging
+
 1. Go to "Communication" section
 2. Click "Add Log" button
 3. Select the student from dropdown
@@ -74,12 +82,14 @@ A Progressive Web Application for managing student mentoring, communication logs
 6. Save to log the interaction
 
 ### Making Calls/WhatsApp
+
 1. Find the student in the list
 2. Click the phone icon for direct call
 3. Click the WhatsApp icon for messaging
 4. Communication is automatically logged
 
 ### Import/Export Data
+
 1. Go to "Import/Export" section
 2. For import: Drag and drop CSV file or click to browse
 3. For export: Choose what to export (Students, Communication, or All)
@@ -88,22 +98,26 @@ A Progressive Web Application for managing student mentoring, communication logs
 ## CSV Format
 
 ### Student Import
+
 Required columns: `name`, `class`, `school`, `place`, `gemsJoiningYear`, `mobile1`
 
 Optional columns: `mobile2`, `province`, `fathersName`, `fathersOccupation`, `mothersName`, `mothersOccupation`, `siblings`, `remarks`
 
 ### Communication Export
+
 Columns: `studentId`, `studentName`, `type`, `date`, `time`, `duration`, `notes`
 
 ## Browser Support
 
 ### Recommended Browsers
+
 - Chrome 80+
 - Firefox 75+
 - Safari 13+
 - Edge 80+
 
 ### PWA Features Support
+
 - Service Workers: Chrome, Firefox, Edge
 - Install Prompt: Chrome, Edge
 - Background Sync: Chrome, Edge
@@ -112,12 +126,14 @@ Columns: `studentId`, `studentName`, `type`, `date`, `time`, `duration`, `notes`
 ## Security
 
 ### Data Privacy
+
 - All data stored locally in browser
 - No external data transmission
 - No third-party tracking
 - Offline-first architecture
 
 ### Best Practices
+
 - Regular data export for backup
 - Use secure connections when available
 - Keep browser updated for security patches
@@ -128,21 +144,25 @@ Columns: `studentId`, `studentName`, `type`, `date`, `time`, `duration`, `notes`
 ### Common Issues
 
 **App not installing:**
+
 - Check browser compatibility
 - Ensure HTTPS connection (required for PWA)
 - Clear browser cache and try again
 
 **Data not saving:**
+
 - Check browser storage permissions
 - Clear browser cache if full
 - Try exporting data as backup
 
 **Offline issues:**
+
 - Ensure service worker is registered
 - Check browser console for errors
 - Refresh the page to re-register service worker
 
 ### Performance Tips
+
 - Keep student records under 1000 for optimal performance
 - Regular export and cleanup of old data
 - Use modern browsers for best experience
@@ -150,11 +170,13 @@ Columns: `studentId`, `studentName`, `type`, `date`, `time`, `duration`, `notes`
 ## Development
 
 ### Local Setup
+
 1. Clone or download the repository
 2. Serve files using HTTP server (required for PWA)
 3. Access via `http://localhost` or similar
 
 ### File Structure
+
 ```
 /
 ├── index.html              # Main application
@@ -177,6 +199,7 @@ Columns: `studentId`, `studentName`, `type`, `date`, `time`, `duration`, `notes`
 ## Features Roadmap
 
 ### Upcoming Features
+
 - [ ] Cloud sync integration
 - [ ] Advanced reporting dashboard
 - [ ] Email integration
@@ -189,6 +212,7 @@ Columns: `studentId`, `studentName`, `type`, `date`, `time`, `duration`, `notes`
 - [ ] SMS integration
 
 ### Technical Improvements
+
 - [ ] IndexedDB for larger datasets
 - [ ] Web Workers for heavy operations
 - [ ] Progressive image loading
@@ -198,6 +222,7 @@ Columns: `studentId`, `studentName`, `type`, `date`, `time`, `duration`, `notes`
 ## Support
 
 For support, feature requests, or bug reports:
+
 1. Check the troubleshooting section above
 2. Verify browser compatibility
 3. Test with a fresh browser profile

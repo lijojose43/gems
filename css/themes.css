@@ -42,53 +42,6 @@
     0 10px 15px -3px rgb(0 0 0 / 0.4), 0 4px 6px -4px rgb(0 0 0 / 0.4);
 }
 
-/* System Theme (follows OS preference) */
-@media (prefers-color-scheme: dark) {
-  :root[data-theme="system"] {
-    --primary-color: #4da6ff;
-    --primary-hover: #1e90ff;
-    --secondary-color: #94a3b8;
-    --success-color: #34d399;
-    --warning-color: #fbbf24;
-    --error-color: #f87171;
-    --background-color: #0f172a;
-    --surface-color: #1e293b;
-    --card-background: #1e293b;
-    --text-primary: #f1f5f9;
-    --text-secondary: #cbd5e1;
-    --text-muted: #64748b;
-    --border-color: #334155;
-    --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.25);
-    --shadow-md:
-      0 4px 6px -1px rgb(0 0 0 / 0.3), 0 2px 4px -2px rgb(0 0 0 / 0.3);
-    --shadow-lg:
-      0 10px 15px -3px rgb(0 0 0 / 0.4), 0 4px 6px -4px rgb(0 0 0 / 0.4);
-  }
-}
-
-@media (prefers-color-scheme: light) {
-  :root[data-theme="system"] {
-    --primary-color: #1e90ff;
-    --primary-hover: #1e7fcc;
-    --secondary-color: #64748b;
-    --success-color: #10b981;
-    --warning-color: #f59e0b;
-    --error-color: #ef4444;
-    --background-color: #ffffff;
-    --surface-color: #f8fafc;
-    --card-background: #ffffff;
-    --text-primary: #1e293b;
-    --text-secondary: #64748b;
-    --text-muted: #94a3b8;
-    --border-color: #e2e8f0;
-    --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
-    --shadow-md:
-      0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
-    --shadow-lg:
-      0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
-  }
-}
-
 /* Theme Toggle Button */
 #theme-toggle .icon {
   width: 2rem;
