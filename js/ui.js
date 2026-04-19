@@ -494,9 +494,6 @@ class UIManager {
                     <strong>Place:</strong> ${this.escapeHtml(student.place)}
                 </div>
                 <div class="info-item">
-                    <strong>Mobile:</strong> ${this.escapeHtml(student.mobile1)}
-                </div>
-                <div class="info-item">
                     <strong>Joined:</strong> ${this.escapeHtml(student.gemsJoiningYear)}
                 </div>
                 <div class="info-item">

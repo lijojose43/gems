@@ -2,62 +2,30 @@
   "name": "Gems Academy - Student Management",
   "short_name": "Gems Academy",
   "description": "Student mentoring and communication management system for Gems Academy",
-  "start_url": "/",
+  "start_url": "/gems/",
   "display": "standalone",
   "background_color": "#ffffff",
   "theme_color": "#6366f1",
   "orientation": "portrait-primary",
-  "scope": "/",
+  "scope": "/gems/",
   "lang": "en",
-  "categories": ["education", "productivity", "business"],
+  "categories": [
+    "education",
+    "productivity",
+    "business"
+  ],
   "icons": [
     {
-      "src": "assets/icons/icon-72x72.png",
-      "sizes": "72x72",
-      "type": "image/png",
-      "purpose": "maskable any"
-    },
-    {
-      "src": "assets/icons/icon-96x96.png",
-      "sizes": "96x96",
-      "type": "image/png",
-      "purpose": "maskable any"
-    },
-    {
-      "src": "assets/icons/icon-128x128.png",
-      "sizes": "128x128",
-      "type": "image/png",
-      "purpose": "maskable any"
-    },
-    {
-      "src": "assets/icons/icon-144x144.png",
-      "sizes": "144x144",
-      "type": "image/png",
-      "purpose": "maskable any"
-    },
-    {
-      "src": "assets/icons/icon-152x152.png",
-      "sizes": "152x152",
-      "type": "image/png",
-      "purpose": "maskable any"
-    },
-    {
-      "src": "assets/icons/icon-192x192.png",
+      "src": "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTkyIiBoZWlnaHQ9IjE5MiIgdmlld0JveD0iMCAwIDE5MiAxNTIiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHJlY3Qgd2lkdGg9IjE1MiIgaGVpZ2h0PSIxNTIiIHJ4PSIyMCIgZmlsbD0iIzYzNjZmMSIvPjxwYXRoIGQ9Ik03NiAzOEwxMDAgNjBIMTQ0TDc2IDEyMEw4IDYwSDMyTDc2IDM4WiIgZmlsbD0id2hpdGUiLz48L3N2Zz4=",
       "sizes": "192x192",
-      "type": "image/png",
-      "purpose": "maskable any"
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
     },
     {
-      "src": "assets/icons/icon-384x384.png",
-      "sizes": "384x384",
-      "type": "image/png",
-      "purpose": "maskable any"
-    },
-    {
-      "src": "assets/icons/icon-512x512.png",
+      "src": "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNTEyIiBoZWlnaHQ9IjUxMiIgdmlld0JveD0iMCAwIDUxMiA1MTIiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHJlY3Qgd2lkdGg9IjUxMiIgaGVpZ2h0PSI1MTIiIHJ4PSI2NCIgZmlsbD0iIzYzNjZmMSIvPjxwYXRoIGQ9Ik0yNTYgMTI4TDMyMCAxOTJIMzg0TDQ4MCAyNTZMMzIwIDMyMEgyNTZMMTMyIDI1NkwxMjggMTkySDE5MkwyNTYgMTI4WiIgZmlsbD0id2hpdGUiLz48L3N2Zz4=",
       "sizes": "512x512",
-      "type": "image/png",
-      "purpose": "maskable any"
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
     }
   ],
   "shortcuts": [
@@ -65,7 +33,7 @@
       "name": "Add Student",
       "short_name": "Add Student",
       "description": "Add a new student to the system",
-      "url": "/?action=add-student",
+      "url": "/gems/?action=add-student",
       "icons": [
         {
           "src": "assets/icons/icon-96x96.png",
@@ -77,7 +45,7 @@
       "name": "Call Log",
       "short_name": "Calls",
       "description": "View communication logs",
-      "url": "/?section=communication",
+      "url": "/gems/?section=communication",
       "icons": [
         {
           "src": "assets/icons/icon-96x96.png",
@@ -89,29 +57,13 @@
       "name": "Students",
       "short_name": "Students",
       "description": "View all students",
-      "url": "/?section=students",
+      "url": "/gems/?section=students",
       "icons": [
         {
-          "src": "assets/icons/icon-96x96.png",
+          "src": "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iOTYiIGhlaWdodD0iOTYiIHZpZXdCb3g9IjAgMCA5NiA5NiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iOTYiIGhlaWdodD0iOTYiIHJ4PSIxMiIgZmlsbD0iIzYzNjZmMSIvPjxwYXRoIGQ9Ik00OCAyNEw2MCAzOEg3Nkw0OCA0OEw2MCA1OEg0OFoiIGZpbGw9IndoaXRlIi8+PC9zdmc+",
           "sizes": "96x96"
         }
       ]
-    }
-  ],
-  "screenshots": [
-    {
-      "src": "assets/screenshots/desktop-1.png",
-      "sizes": "1280x720",
-      "type": "image/png",
-      "form_factor": "wide",
-      "label": "Dashboard view showing student statistics"
-    },
-    {
-      "src": "assets/screenshots/mobile-1.png",
-      "sizes": "375x667",
-      "type": "image/png",
-      "form_factor": "narrow",
-      "label": "Mobile view of student list"
     }
   ],
   "related_applications": [],

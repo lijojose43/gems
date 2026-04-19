@@ -2,380 +2,438 @@
 
 /* Install Banner */
 .install-banner {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    background: linear-gradient(135deg, var(--primary-color), var(--primary-hover));
-    color: white;
-    z-index: 2000;
-    box-shadow: var(--shadow-lg);
-    animation: slideDown 0.3s ease;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(
+    135deg,
+    var(--primary-color),
+    var(--primary-hover)
+  );
+  color: white;
+  z-index: 2000;
+  box-shadow: var(--shadow-lg);
+  animation: slideDown 0.3s ease;
 }
 
 .install-banner-content {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1rem;
-    max-width: 1200px;
-    margin: 0 auto;
-    gap: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  gap: 1rem;
 }
 
 .install-banner-content span {
-    font-weight: 500;
-    flex: 1;
+  font-weight: 500;
+  flex: 1;
 }
 
 .install-banner .btn {
-    background-color: rgba(255, 255, 255, 0.2);
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    color: white;
-    backdrop-filter: blur(10px);
+  background-color: rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: white;
+  backdrop-filter: blur(10px);
 }
 
 .install-banner .btn:hover {
-    background-color: rgba(255, 255, 255, 0.3);
-    transform: translateY(-1px);
+  background-color: rgba(255, 255, 255, 0.3);
+  transform: translateY(-1px);
 }
 
 .install-banner .btn-icon {
-    background: none;
-    border: none;
-    color: white;
-    font-size: 1.25rem;
-    padding: 0.25rem;
+  background: none;
+  border: none;
+  color: white;
+  font-size: 1.25rem;
+  padding: 0.25rem;
 }
 
 /* Update Banner */
 .update-banner {
-    position: fixed;
-    bottom: 5rem; /* Above mobile nav */
-    left: 1rem;
-    right: 1rem;
-    background: var(--success-color);
-    color: white;
-    border-radius: var(--radius-lg);
-    box-shadow: var(--shadow-lg);
-    z-index: 2000;
-    animation: slideUp 0.3s ease;
+  position: fixed;
+  bottom: 5rem; /* Above mobile nav */
+  left: 1rem;
+  right: 1rem;
+  background: var(--success-color);
+  color: white;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
+  z-index: 2000;
+  animation: slideUp 0.3s ease;
 }
 
 @media (min-width: 769px) {
-    .update-banner {
-        bottom: 1rem;
-        left: auto;
-        right: 1rem;
-        max-width: 400px;
-    }
+  .update-banner {
+    bottom: 1rem;
+    left: auto;
+    right: 1rem;
+    max-width: 400px;
+  }
 }
 
 .update-banner-content {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1rem;
-    gap: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  gap: 1rem;
 }
 
 .update-banner-content span {
-    font-weight: 500;
-    flex: 1;
+  font-weight: 500;
+  flex: 1;
 }
 
 .update-banner .btn {
-    background-color: rgba(255, 255, 255, 0.2);
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    color: white;
-    backdrop-filter: blur(10px);
+  background-color: rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: white;
+  backdrop-filter: blur(10px);
 }
 
 .update-banner .btn-icon {
-    background: none;
-    border: none;
-    color: white;
-    font-size: 1.25rem;
-    padding: 0.25rem;
+  background: none;
+  border: none;
+  color: white;
+  font-size: 1.25rem;
+  padding: 0.25rem;
 }
 
 /* Connection Status */
 .connection-status {
-    position: fixed;
-    top: 1rem;
-    left: 1rem;
-    width: 1rem;
-    height: 1rem;
-    border-radius: 50%;
-    z-index: 1500;
-    animation: pulse 2s infinite;
-    box-shadow: 0 0 10px currentColor;
+  position: fixed;
+  top: 1rem;
+  left: 1rem;
+  width: 1rem;
+  height: 1rem;
+  border-radius: 50%;
+  z-index: 1500;
+  animation: pulse 2s infinite;
+  box-shadow: 0 0 10px currentColor;
 }
 
 .connection-status.online {
-    color: var(--success-color);
+  color: var(--success-color);
 }
 
 .connection-status.offline {
-    color: var(--error-color);
+  color: var(--error-color);
 }
 
 /* Activity Items */
 .activity-list {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
 }
 
 .activity-item {
-    display: flex;
-    align-items: flex-start;
-    gap: 1rem;
-    padding: 1rem;
-    background-color: var(--card-background);
-    border: 1px solid var(--border-color);
-    border-radius: var(--radius-md);
-    transition: all 0.2s ease;
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  padding: 1rem;
+  background-color: var(--card-background);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  transition: all 0.2s ease;
 }
 
 .activity-item:hover {
-    transform: translateY(-1px);
-    box-shadow: var(--shadow-sm);
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-sm);
 }
 
 .activity-icon {
-    font-size: 1.5rem;
-    flex-shrink: 0;
+  font-size: 1.5rem;
+  flex-shrink: 0;
 }
 
 .activity-content {
-    flex: 1;
+  flex: 1;
 }
 
 .activity-text {
-    font-weight: 500;
-    color: var(--text-primary);
-    margin-bottom: 0.25rem;
+  font-weight: 500;
+  color: var(--text-primary);
+  margin-bottom: 0.25rem;
 }
 
 .activity-time {
-    font-size: 0.875rem;
-    color: var(--text-muted);
+  font-size: 0.875rem;
+  color: var(--text-muted);
 }
 
 /* Form Validation */
 .form-input.error,
 .form-select.error,
 .form-textarea.error {
-    border-color: var(--error-color);
-    box-shadow: 0 0 0 3px rgb(239 68 68 / 0.1);
+  border-color: var(--error-color);
+  box-shadow: 0 0 0 3px rgb(239 68 68 / 0.1);
 }
 
 .form-input:focus.error,
 .form-select:focus.error,
 .form-textarea:focus.error {
-    border-color: var(--error-color);
-    box-shadow: 0 0 0 3px rgb(239 68 68 / 0.2);
+  border-color: var(--error-color);
+  box-shadow: 0 0 0 3px rgb(239 68 68 / 0.2);
 }
 
 /* Toast Animations */
 @keyframes toastSlideOut {
-    from {
-        opacity: 1;
-        transform: translateX(0);
-    }
-    to {
-        opacity: 0;
-        transform: translateX(100%);
-    }
+  from {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateX(100%);
+  }
 }
 
 @keyframes slideDown {
-    from {
-        opacity: 0;
-        transform: translateY(-100%);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+  from {
+    opacity: 0;
+    transform: translateY(-100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 @keyframes slideUp {
-    from {
-        opacity: 0;
-        transform: translateY(100%);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+  from {
+    opacity: 0;
+    transform: translateY(100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 @keyframes pulse {
-    0% {
-        opacity: 1;
-        transform: scale(1);
-    }
-    50% {
-        opacity: 0.7;
-        transform: scale(1.1);
-    }
-    100% {
-        opacity: 1;
-        transform: scale(1);
-    }
+  0% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.7;
+    transform: scale(1.1);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
 }
 
 /* PWA Install Prompt Styles */
 .pwa-install-prompt {
-    position: fixed;
-    bottom: 6rem; /* Above mobile nav */
-    left: 1rem;
-    right: 1rem;
-    background: var(--card-background);
-    border: 1px solid var(--border-color);
-    border-radius: var(--radius-lg);
-    padding: 1.5rem;
-    box-shadow: var(--shadow-lg);
-    z-index: 2000;
-    animation: slideUp 0.3s ease;
+  position: fixed;
+  bottom: 6rem; /* Above mobile nav */
+  left: 1rem;
+  right: 1rem;
+  background: var(--card-background);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  padding: 1.5rem;
+  box-shadow: var(--shadow-lg);
+  z-index: 2000;
+  animation: slideUp 0.3s ease;
 }
 
 @media (min-width: 769px) {
-    .pwa-install-prompt {
-        bottom: 1rem;
-        left: auto;
-        right: 1rem;
-        max-width: 350px;
-    }
+  .pwa-install-prompt {
+    bottom: 1rem;
+    left: auto;
+    right: 1rem;
+    max-width: 350px;
+  }
 }
 
 .pwa-install-prompt-header {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
 }
 
 .pwa-install-icon {
-    width: 3rem;
-    height: 3rem;
-    border-radius: var(--radius-md);
-    background: var(--primary-color);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.5rem;
+  width: 3rem;
+  height: 3rem;
+  border-radius: var(--radius-md);
+  background: var(--primary-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
 }
 
 .pwa-install-title {
-    font-weight: 600;
-    color: var(--text-primary);
+  font-weight: 600;
+  color: var(--text-primary);
 }
 
 .pwa-install-description {
-    color: var(--text-secondary);
-    margin-bottom: 1rem;
-    font-size: 0.875rem;
-    line-height: 1.5;
+  color: var(--text-secondary);
+  margin-bottom: 1rem;
+  font-size: 0.875rem;
+  line-height: 1.5;
 }
 
 .pwa-install-actions {
-    display: flex;
-    gap: 0.75rem;
-    justify-content: flex-end;
+  display: flex;
+  gap: 0.75rem;
+  justify-content: flex-end;
 }
 
 /* Loading States */
 .loading-skeleton {
-    background: linear-gradient(90deg, var(--surface-color) 25%, var(--border-color) 50%, var(--surface-color) 75%);
-    background-size: 200% 100%;
-    animation: loading 1.5s infinite;
-    border-radius: var(--radius-md);
+  background: linear-gradient(
+    90deg,
+    var(--surface-color) 25%,
+    var(--border-color) 50%,
+    var(--surface-color) 75%
+  );
+  background-size: 200% 100%;
+  animation: loading 1.5s infinite;
+  border-radius: var(--radius-md);
 }
 
 @keyframes loading {
-    0% {
-        background-position: 200% 0;
-    }
-    100% {
-        background-position: -200% 0;
-    }
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
 }
 
 .skeleton-text {
-    height: 1rem;
-    margin-bottom: 0.5rem;
+  height: 1rem;
+  margin-bottom: 0.5rem;
 }
 
 .skeleton-text.title {
-    height: 1.5rem;
-    width: 70%;
+  height: 1.5rem;
+  width: 70%;
 }
 
 .skeleton-text.subtitle {
-    height: 1rem;
-    width: 50%;
+  height: 1rem;
+  width: 50%;
 }
 
 .skeleton-card {
-    height: 150px;
-    margin-bottom: 1rem;
+  height: 150px;
+  margin-bottom: 1rem;
 }
 
 /* Offline Indicator */
 .offline-indicator {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    background: var(--error-color);
-    color: white;
-    text-align: center;
-    padding: 0.5rem;
-    font-size: 0.875rem;
-    font-weight: 500;
-    z-index: 3000;
-    transform: translateY(-100%);
-    transition: transform 0.3s ease;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background: var(--error-color);
+  color: white;
+  text-align: center;
+  padding: 0.5rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  z-index: 3000;
+  transform: translateY(-100%);
+  transition: transform 0.3s ease;
 }
 
 .offline-indicator.show {
-    transform: translateY(0);
+  transform: translateY(0);
 }
 
 /* Print Styles */
 @media print {
-    .install-banner,
-    .update-banner,
-    .connection-status,
-    .offline-indicator,
-    .mobile-nav {
-        display: none !important;
-    }
+  .install-banner,
+  .update-banner,
+  .connection-status,
+  .offline-indicator,
+  .mobile-nav {
+    display: none !important;
+  }
 }
 
 /* High Contrast Mode */
 @media (prefers-contrast: high) {
-    .install-banner,
-    .update-banner {
-        border: 2px solid currentColor;
-    }
-    
-    .connection-status {
-        border: 2px solid currentColor;
-    }
+  .install-banner,
+  .update-banner {
+    border: 2px solid currentColor;
+  }
+
+  .connection-status {
+    border: 2px solid currentColor;
+  }
+}
+
+/* Install Button */
+.install-btn {
+  background: var(--primary-color);
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: var(--radius-md);
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  box-shadow: var(--shadow-sm);
+}
+
+.install-btn:hover {
+  background: var(--primary-hover);
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-md);
+}
+
+.install-btn:active {
+  transform: translateY(0);
+}
+
+.install-btn .btn-icon {
+  width: 1rem;
+  height: 1rem;
+}
+
+@media (max-width: 768px) {
+  .install-btn {
+    padding: 0.375rem 0.75rem;
+    font-size: 0.75rem;
+  }
+
+  .install-btn .btn-text {
+    display: none;
+  }
+
+  .install-btn .btn-icon {
+    width: 1.25rem;
+    height: 1.25rem;
+  }
 }
 
 /* Reduced Motion */
 @media (prefers-reduced-motion: reduce) {
-    .install-banner,
-    .update-banner,
-    .pwa-install-prompt,
-    .activity-item,
-    .connection-status {
-        animation: none;
-        transition: none;
-    }
+  .install-banner,
+  .update-banner,
+  .pwa-install-prompt,
+  .activity-item,
+  .connection-status,
+  .install-btn {
+    animation: none;
+    transition: none;
+  }
 }
