@@ -365,6 +365,12 @@
   }
 }
 
+/* Fix bottomsheet scroll issue */
+.mobile-nav {
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
 /* High Contrast Mode */
 @media (prefers-contrast: high) {
   .install-banner,
